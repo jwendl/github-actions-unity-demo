@@ -1,0 +1,37 @@
+name: Unity Demo CI
+
+on: [push]
+
+jobs:
+  build:
+    name: Build using Unity 🦄
+    runs-on: ubuntu-latest
+    steps:
+      # See https://github.com/marketplace/actions/unity-activate and https://github.com/marketplace/actions/unity-builder
+      # Activate Unity
+      - name: Activate Unity
+        uses: webbertakken/unity-activate@v1.2
+        env:
+          UNITY_EMAIL: ${{ secrets.UNITY_USERNAME }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+          UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
+    
+      # Checkout
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      # Build
+      - name: Build project
+        uses: webbertakken/unity-builder@v0.10
+        with:
+          projectPath: ./Unity-Demo
+          unityVersion: 2019.2.11f1
+          # Get from https://github.com/webbertakken/unity-builder#complete-example
+          targetPlatform: StandaloneWindows64 
+
+      # Output 
+      - uses: actions/upload-artifact@v1
+        with:
+          name: Build
+          path: build
+
