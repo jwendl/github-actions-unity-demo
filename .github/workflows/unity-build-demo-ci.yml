@@ -8,10 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: gableroux/unity3d:2019.3.1f1-windows-update-2020-02-17
-      env:
-        UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-        UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-        UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
       
     steps:
       # See https://github.com/marketplace/actions/unity-builder
