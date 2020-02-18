@@ -7,24 +7,20 @@ jobs:
     name: Build using Unity 🦄
     runs-on: ubuntu-latest
     steps:
-      # See https://github.com/marketplace/actions/unity-activate and https://github.com/marketplace/actions/unity-builder
-      # Activate Unity
-      - name: Activate Unity
-        uses: webbertakken/unity-activate@v1.2
-        env:
-          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-          UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
-    
+      # See https://github.com/marketplace/actions/unity-builder
       # Checkout
       - name: Checkout Code
         uses: actions/checkout@v2
 
       # Build
       - name: Build project
-        uses: webbertakken/unity-builder@v0.10
+        uses: webbertakken/unity-builder@v0.11
+        env:
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+          UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
         with:
-          projectPath: ./Unity-Demo
+          projectPath: Unity-Demo
           unityVersion: 2019.2.11f1
           # Get from https://github.com/webbertakken/unity-builder#complete-example
           targetPlatform: StandaloneWindows64 
