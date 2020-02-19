@@ -5,9 +5,7 @@ on: [push]
 jobs:
   build:
     name: Build using Unity 🦄
-    runs-on: ubuntu-latest
-    container:
-      image: jwendl/unity-windows-uwp:latest
+    runs-on: windows-latest
       
     steps:
       # See https://github.com/marketplace/actions/unity-builder
