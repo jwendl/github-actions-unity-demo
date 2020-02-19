@@ -14,8 +14,6 @@ jobs:
       
       - name: Perform Unity Commands via Shell
         run: |
-          Register-PSRepository -Name "PSGallery" –SourceLocation "https://www.powershellgallery.com/api/v2/" -Default
-          Install-PackageProvider -Name NuGet -Force
           Install-Module UnitySetup -Force
           Import-Module UnitySetup
           Find-UnitySetupInstaller -Version $env:UNITY_VERSION -Components 'Windows','UWP' | Install-UnitySetupInstance -Verbose
