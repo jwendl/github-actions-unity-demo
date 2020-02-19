@@ -14,7 +14,7 @@ jobs:
       
       - name: Perform Unity Commands via Shell
         run: |
-          Install-PackageProvider -Name "Nuget" -Force
+          Find-PackageProvider -Name "Nuget" | Install-PackageProvider -Force
           Install-Module UnitySetup -Force
           Import-Module UnitySetup
           Find-UnitySetupInstaller -Version $env:UNITY_VERSION -Components 'Windows','UWP' | Install-UnitySetupInstance -Verbose
