@@ -7,16 +7,15 @@ jobs:
     name: Build using Unity 🦄
     runs-on: ubuntu-latest
     container:
-      image: gableroux/unity3d:2019.3.1f1-windows-update-2020-02-17
+      image: jwendl/unity-windows-uwp:latest
       
     steps:
       # See https://github.com/marketplace/actions/unity-builder
-      # Checkout
       - name: Checkout Code
         uses: actions/checkout@v2
 
       - name: Activate Unity
-        run: xvfb-run --auto-servernum --server-args='-screen 0 640x480x24' /opt/Unity/Editor/Unity -logFile /dev/stdout -batchmode -username "$UNITY_EMAIL" -password "$UNITY_PASSWORD" -serial "$UNITY_SERIAL"
+        run: powershell Start-UnityEditor -BatchMode -Quit -Verbose -Wait -AdditionalArguments "-nographics -username $env:UNITY_EMAIL -password $env:PASSWORD -serial $env:UNITY_SERIAL"
         env:
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
