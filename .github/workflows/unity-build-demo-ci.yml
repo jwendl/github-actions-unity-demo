@@ -12,7 +12,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v2
       
-      - name: Perform Unity Commands via Shell
+      - name: Install and Activate Unity
         run: |
           Install-Module UnitySetup -Force
           Import-Module UnitySetup
@@ -24,3 +24,7 @@ jobs:
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
           UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
+
+      - name: Build Unity Project
+        run: |
+          Start-UnityEditor -ExecuteMethod Microsoft.MixedReality.Toolkit.Build.Editor.UnityPlayerBuildTools.StartCommandLineBuild -BatchMode -Quit -Verbose -Wait -AdditionalArguments "-nographics -projectPath Unity-Demo/"
