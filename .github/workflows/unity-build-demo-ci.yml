@@ -13,10 +13,17 @@ jobs:
       # See https://github.com/marketplace/actions/unity-builder
       - name: Checkout Code
         uses: actions/checkout@v2
-
-      - name: Activate Unity
-        run: powershell Start-UnityEditor -BatchMode -Quit -Verbose -Wait -AdditionalArguments "-nographics -username $env:UNITY_EMAIL -password $env:PASSWORD -serial $env:UNITY_SERIAL"
+      
+      - name: Perform Unity Commands via Shell
+        run: |
+          Install-PackageProvider -Name "Nuget" -Force
+          Install-Module UnitySetup -Force
+          Import-Module UnitySetup
+          Find-UnitySetupInstaller -Version $env:UNITY_VERSION -Components 'Windows','UWP' | Install-UnitySetupInstance -Verbose
+          Start-UnityEditor -BatchMode -Quit -Verbose -Wait -AdditionalArguments "-nographics -username $env:UNITY_EMAIL -password $env:PASSWORD -serial $env:UNITY_SERIAL"
+        shell: pwsh
         env:
+          UNITY_VERSION: 2019.3.0f6 
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
           UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
