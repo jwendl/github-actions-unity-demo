@@ -19,8 +19,7 @@ jobs:
           Find-UnitySetupInstaller -Version $env:UNITY_VERSION -Components 'Windows','UWP' | Install-UnitySetupInstance -Verbose
           $url = "https://gist.githubusercontent.com/jwendl/a5c7b74a8ffbda675bd85452bc0f24c4/raw/7c36cc0993a74f20814a5fe5270c6d087b81a4fa/ivy.xml"
           $output = "C:\Program Files\Unity\Hub\Editor\2019.3.0f6\Editor\Data\UnityExtensions\Unity\UnityVR\ivy.xml"
-
-          Invoke-WebRequest -Uri $url -OutFile $output
+          Invoke-WebRequest -Uri $url -OutFile $output -Verbose
           Start-UnityEditor -BatchMode -Quit -Verbose -Wait -AdditionalArguments "-nographics -username $env:UNITY_EMAIL -password $env:PASSWORD -serial $env:UNITY_SERIAL"
         shell: pwsh
         env:
