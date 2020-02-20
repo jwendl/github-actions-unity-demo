@@ -27,12 +27,8 @@ jobs:
       - name: Activate Unity
         run: |
           echo "Using $UNITY_EMAIL"
-          "C:\Program Files\Unity\Editor\Unity.exe" -batchmode -quit -verbose -wait -nographics -username $UNITY_EMAIL -password $PASSWORD -serial $UNITY_SERIAL
+          "C:\Program Files\Unity\Editor\Unity.exe" -batchmode -quit -verbose -wait -nographics -username ${{ secrets.UNITY_EMAIL }} -password ${{ secrets.PASSWORD }} -serial ${{ secrets.UNITY_SERIAL }}
         shell: cmd
-        env:
-          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-          UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
 
       - name: Build Unity Project
         run: |
