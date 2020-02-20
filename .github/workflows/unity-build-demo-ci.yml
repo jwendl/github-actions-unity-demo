@@ -2,6 +2,9 @@ name: Unity Demo CI
 
 on: [push]
 
+env:
+  version: 0.2
+
 jobs:
   build:
     name: Build using Unity 🦄
