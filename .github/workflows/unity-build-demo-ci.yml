@@ -27,10 +27,10 @@ jobs:
       - name: Activate Unity
         run: |
           echo "Using ${{ secrets.UNITY_EMAIL }}"
-          "C:\Program Files\Unity\Editor\Unity.exe" -batchmode -quit -verbose -wait -nographics -username ${{ secrets.UNITY_EMAIL }} -password ${{ secrets.PASSWORD }} -serial ${{ secrets.UNITY_SERIAL }}
+          "C:\Program Files\Unity\Editor\Unity.exe" -batchmode -quit -verbose -nographics -username ${{ secrets.UNITY_EMAIL }} -password ${{ secrets.PASSWORD }} -serial ${{ secrets.UNITY_SERIAL }}
         shell: cmd
 
       - name: Build Unity Project
         run: |
-          "C:\Program Files\Unity\Editor\Unity.exe" -batchmode -quit -verbose -wait -nographics -projectPath "Unity-Demo/" -executeMethod Microsoft.MixedReality.Toolkit.Build.Editor.UnityPlayerBuildTools.StartCommandLineBuild
+          "C:\Program Files\Unity\Editor\Unity.exe" -batchmode -quit -verbose -nographics -projectPath "Unity-Demo/" -executeMethod Microsoft.MixedReality.Toolkit.Build.Editor.UnityPlayerBuildTools.StartCommandLineBuild
         shell: cmd
