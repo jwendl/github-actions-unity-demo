@@ -27,7 +27,7 @@ jobs:
       - name: Activate Unity
         run: |
           echo "Using ${{ secrets.UNITY_EMAIL }}"
-          "C:\Program Files\Unity\Editor\Unity.exe" -batchmode -quit -verbose -nographics -username ${{ secrets.UNITY_EMAIL }} -password ${{ secrets.PASSWORD }} -serial ${{ secrets.UNITY_SERIAL }}
+          "C:\Program Files\Unity\Editor\Unity.exe" -logfile .\Editor.log -batchmode -quit -verbose -nographics -username ${{ secrets.UNITY_EMAIL }} -password ${{ secrets.PASSWORD }} -serial ${{ secrets.UNITY_SERIAL }}
         shell: cmd
 
       - name: Build Unity Project
@@ -37,5 +37,5 @@ jobs:
 
       - name: Show Unity Logs
         run: |
-          cat %localappdata%\Unity\Editor\Editor.log
+          cat .\Editor.log
         if: always()
