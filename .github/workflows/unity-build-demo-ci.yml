@@ -3,7 +3,7 @@ name: Unity Demo CI
 on: [push]
 
 env:
-  version: 0.2
+  version: 0.3
 
 jobs:
   build:
