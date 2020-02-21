@@ -34,3 +34,8 @@ jobs:
         run: |
           "C:\Program Files\Unity\Editor\Unity.exe" -batchmode -quit -verbose -nographics -projectPath "Unity-Demo/" -executeMethod Microsoft.MixedReality.Toolkit.Build.Editor.UnityPlayerBuildTools.StartCommandLineBuild
         shell: cmd
+
+      - name: Show Unity Logs
+        run: |
+          cat %localappdata%\Unity\Editor\Editor.log
+        if: always()
