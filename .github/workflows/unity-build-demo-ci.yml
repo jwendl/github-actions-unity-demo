@@ -22,7 +22,7 @@ jobs:
           Find-UnitySetupInstaller -Version $env:UNITY_VERSION -Components 'Windows','UWP' | Install-UnitySetupInstance -Verbose
         shell: pwsh
         env:
-          UNITY_VERSION: 2019.3.0f6
+          UNITY_VERSION: 2019.2.0a9
           
       - name: Activate Unity
         run: |
