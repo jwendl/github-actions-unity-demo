@@ -35,9 +35,9 @@ jobs:
           "C:\Program Files\Unity\Editor\Unity.exe" -batchmode -quit -verbose -nographics -projectPath ".\Unity-Demo\" -executeMethod Microsoft.MixedReality.Toolkit.Build.Editor.UnityPlayerBuildTools.StartCommandLineBuild
         shell: cmd
 
-      - name: Activate Unity
+      - name: Release License for Unity
         run: |
           echo "Using ${{ secrets.UNITY_EMAIL }}"
           "C:\Program Files\Unity\Editor\Unity.exe" -batchmode -quit -returnlicense
         shell: cmd
-    
+        if: always()
