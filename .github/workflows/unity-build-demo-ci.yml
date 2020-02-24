@@ -14,30 +14,8 @@ jobs:
       # See https://github.com/marketplace/actions/unity-builder
       - name: Checkout Code
         uses: actions/checkout@v2
-      
-      - name: Install Unity
-        run: |
-          Install-Module UnitySetup -Force
-          Import-Module UnitySetup
-          Find-UnitySetupInstaller -Version $env:UNITY_VERSION -Components 'Windows','UWP' | Install-UnitySetupInstance -Verbose
-        shell: pwsh
-        env:
-          UNITY_VERSION: 2019.3.0f6
-          
-      - name: Activate Unity
-        run: |
-          echo "Using ${{ secrets.UNITY_EMAIL }}"
-          "C:\Program Files\Unity\Editor\Unity.exe" -batchmode -quit -verbose -nographics -username ${{ secrets.UNITY_EMAIL }} -password ${{ secrets.PASSWORD }} -serial ${{ secrets.UNITY_SERIAL }}
-        shell: cmd
 
-      - name: Build Unity Project
-        run: |
-          "C:\Program Files\Unity\Editor\Unity.exe" -batchmode -quit -verbose -nographics -projectPath ".\Unity-Demo\" -executeMethod Microsoft.MixedReality.Toolkit.Build.Editor.UnityPlayerBuildTools.StartCommandLineBuild
-        shell: cmd
-
-      - name: Release License for Unity
-        run: |
-          echo "Using ${{ secrets.UNITY_EMAIL }}"
-          "C:\Program Files\Unity\Editor\Unity.exe" -batchmode -quit -returnlicense
-        shell: cmd
-        if: always()
+      - name: Unity - Activate
+        uses: webbertakken/unity-activate@v1.2
+        with:
+          unityVersion: 2019.3.0f6
